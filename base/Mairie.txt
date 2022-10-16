@@ -1,0 +1,43 @@
+# table naissance
+CREATE TABLE acte_naissance(num_acte varchar(50) PRIMARY key,nom varchar(50) not null, prenom varchar(50) not null,
+date_naissance date not null,lieu_naissance varchar(50) not null, sexe varchar(50) not null,prenom_pere varchar(50) not null,
+profession_pere varchar(50) not null, domicil_pere varchar(50) not null,nom_mere varchar(50) not null,prenom_mere varchar(50) not null,
+profession_mere varchar(50) not null,domicil_mere varchar(50) not null, officier_etat_civil varchar(50) not null,date_etablissement date not null);
+
+#table mariage
+create table acte_mariage(num_acte varchar(50) PRIMARY key ,date_mariage date not null,nom_marie varchar(50) not null, prénom_marie varchar(50) not null, 
+date_naissance_marie date not null,lieux_naissance_marie varchar(50) not null, domicile_marie varchar(50) not null,profession_marie varchar(50) not null, 
+parent_marie varchar(50) not null, nom_mariee varchar(50) not null,prenom_mariee varchar(50) not null,date_naissance_mariee date not null, 
+lieux_naissance_mariee varchar(50) not null,domicile_mariee varchar(50) not null,profession_mariee varchar(50) not null, parent_mariee varchar(50) not null,
+regime_matrimoniale varchar(50) not null, option_matrimoniale varchar(50) not null,banc varchar(50), FOREIGN key(banc) REFERENCES banc(identifiant));
+
+# table décès
+CREATE TABLE acte_deces(num_acte varchar(50) PRIMARY KEY,nom varchar(50) not null,prenom varchar(50) not null, 
+date_deces date not null,cause_deces varchar(50) not null,officier_etat_civil varchar(50) not null, date_etablissement date not null);
+
+#table banc
+create table banc(identifiant varchar(50) PRIMARY key,nom_marie varchar(50) not null,prenom_marie varchar(50) not null, 
+nom_mariee varchar(50) not null,prenom_mariee varchar(50) not null,date_declaration date not null, date_mariage date not null,telephone_personne int,FOREIGN key(telephone_personne) REFERENCES personne(telephone));
+
+# table employe
+create table employe(nom varchar(50),prenom varchar(50),telephone int PRIMARY KEY,salaire varchar(50),date_embauche date);
+
+#table personne
+create table personne(nom varchar(50),prenom varchar(50),telephone int primary key);
+
+#table document
+CREATE TABLE document(num_document int primary key,type_document varchar(50),nom_proprietaire varchar(50), 
+telephone int,FOREIGN KEY(telephone) REFERENCES personne(telephone));
+
+#table rdv
+CREATE TABLE rdv(num_rdv int PRIMARY KEY,date_rdv date,heure_rdv time,motif varchar(50),
+telephone int, FOREIGN KEY(telephone) REFERENCES personne(telephone));
+#table projet
+CREATE TABLE projet(num_projet int PRIMARY key,description varchar(100),etat_projet varchar(100),
+telephone int, FOREIGN KEY(telephone) REFERENCES personne(telephone));
+
+#table activite
+create table activite(num_activite int PRIMARY key,description varchar(100),date_activite date,heure time, lieux varchar(50),etat varchar(50));
+
+#table utilisateur
+create TABLE utilisateur(nom varchar(50),prenom varchar(50),téléphone int PRIMARY KEY,login varchar(50), mot_de_passe varchar(50),role varchar(50));

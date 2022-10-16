@@ -14,7 +14,8 @@ KV = '''
     selected_color: "#4a4939"
     _no_ripple_effect: True
 
-<ContentNavigationDrawer>
+#Maire
+<ContentNavigationDrawerMaire>
     MDNavigationDrawerMenu:
         MDNavigationDrawerHeader:
             title: "Menu"
@@ -121,17 +122,122 @@ KV = '''
 
         MDNavigationDrawerDivider:
 
-        MDNavigationDrawerLabel:
-            text: "Labels"
+    MDList:
+
+        OneLineListItem:
+            text: "Deconnectez-vous"
+            item_color:'red'
+            on_press:
+                root.nav_drawer.set_state("close")
+                app.decon()
+
+#Sécretaire PRINCIPAL
+<ContentNavigationDrawerSP>
+    MDNavigationDrawerMenu:
+        MDNavigationDrawerHeader:
+            title: "Menu"
+            title_color: "white"
+            #text: "Header text"
+            font_name:'font\AkayaKanadaka-Regular.ttf'
+            spacing: "4dp"
+            padding: "12dp", 0, 0, "30dp"
+
+        #MDNavigationDrawerLabel:
+            #text: "Mail"
+
+        DrawerClickableItem:
+            #icon: "gmail"
+            #right_text: "+99"
+            text: "Accueil"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "acceuil_sp"
+            
+        DrawerClickableItem:
+            #icon: "send"
+            text: "Acte de Naissance"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "actenaissance_sp"
+        
+        DrawerClickableItem:
+            #icon: "send"
+            text: "Acte de Mariage"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "actemariage_sp"
+        
+        DrawerClickableItem:
+            #icon: "send"
+            text: "Acte de Décès"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "actedeces_sp"
+
+        DrawerClickableItem:
+            #icon: "send"
+            text: "Bancs"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "bancs_sp"
+
+        DrawerClickableItem:
+            #icon: "send"
+            text: "Documents"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "documents_sp"
+
+        DrawerClickableItem:
+            #icon: "gmail"
+            #right_text: "+99"
+            text: "Employés"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "employés_sp"
+            
+        DrawerClickableItem:
+            #icon: "send"
+            text: "Projets"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "projets_sp"
+
+        DrawerClickableItem:
+            #icon: "send"
+            text: "Rendez-vous"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "rdv_sp"
+                
+        DrawerClickableItem:
+            #icon: "send"
+            text: "Personne"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "personnes_sp"
+
+        DrawerClickableItem:
+            #icon: "send"
+            text: "Comptabilité"
+            text_color: "black"
+            on_press:
+                root.nav_drawersp.set_state("close")
+                root.screen_managersp.current = "comptabilité_sp"
+            
             
 
-        DrawerLabelItem:
-            icon: "information-outline"
-            text: "Label"
-
-        DrawerLabelItem:
-            icon: "information-outline"
-            text: "Label"
+        MDNavigationDrawerDivider:
 
     MDList:
 
@@ -147,7 +253,7 @@ KV = '''
 <MagicButton@MagicBehavior+MDRectangleFlatButton>
 MDScreen:
     name:'mairie'
-    #Le screnmanager qui controle la page de connexion et d'inscription
+    #Le screnmanager qui controle Tout
     ScreenManager:
         id:manager1
 
@@ -269,7 +375,7 @@ MDScreen:
                     font_name:'font\AkayaKanadaka-Regular.ttf'
                     md_bg_color:(87/255,84/255,212/255,100)
                     on_release:
-                        manager1.current='maire'
+                        manager1.current='sp'
                         app.show_data()
 
                 MDLabel:
@@ -573,7 +679,7 @@ MDScreen:
                         icon: "menu"
                         pos_hint: {"center_x": .0,"center_y": .5}
                         halign:'left'
-                        size_hint_x: 0.5
+                        size_hint_x: 0.3
                         size_hint_y: 0
                         theme_text_color: "Custom"
                         text_color:'white'
@@ -609,8 +715,8 @@ MDScreen:
                             MDCard:
                                 pos:15,550
                                 size_hint: .45, .2
-                                focus_behavior: True
-                                md_bg_color: "darkgrey"
+                                focus_behavior: False
+                                md_bg_color: "#FF6347"
                                 unfocus_color: "darkgrey"
                                 focus_color: "grey"
                                 elevation: 6
@@ -621,8 +727,8 @@ MDScreen:
                             MDCard:
                                 pos:15,300
                                 size_hint: .45, .2
-                                focus_behavior: True
-                                md_bg_color: "darkgrey"
+                                focus_behavior: False
+                                md_bg_color: "#1C89B8"
                                 unfocus_color: "darkgrey"
                                 focus_color: "grey"
                                 elevation: 6
@@ -633,8 +739,8 @@ MDScreen:
                             MDCard:
                                 pos:685,550
                                 size_hint: .45, .2
-                                focus_behavior: True
-                                md_bg_color: "darkgrey"
+                                focus_behavior: False
+                                md_bg_color: "#502E5C"
                                 unfocus_color: "darkgrey"
                                 focus_color: "grey"
                                 elevation: 6
@@ -645,8 +751,8 @@ MDScreen:
                             MDCard:
                                 pos:685,300
                                 size_hint: .45, .2
-                                focus_behavior: True
-                                md_bg_color: "darkgrey"
+                                focus_behavior: False
+                                md_bg_color: "#51C055"
                                 unfocus_color: "darkgrey"
                                 focus_color: "grey"
                                 elevation: 6
@@ -657,8 +763,8 @@ MDScreen:
                             MDCard:
                                 pos:15,50
                                 size_hint: .45, .2
-                                focus_behavior: True
-                                md_bg_color: "darkgrey"
+                                focus_behavior: False
+                                md_bg_color: "#FF5F04"
                                 unfocus_color: "darkgrey"
                                 focus_color: "grey"
                                 elevation: 6
@@ -669,8 +775,8 @@ MDScreen:
                             MDCard:
                                 pos:685,50
                                 size_hint: .45, .2
-                                focus_behavior: True
-                                md_bg_color: "darkgrey"
+                                focus_behavior: False
+                                md_bg_color: "#D13434"
                                 unfocus_color: "darkgrey"
                                 focus_color: "grey"
                                 elevation: 6
@@ -684,9 +790,27 @@ MDScreen:
                         name: "actenaissance_maire"
 
                         MDCard:
-                            pos:10,400
-                            size_hint: .98, .3
-                            focus_behavior: True
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des actes de naissance"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
                             md_bg_color: "darkgrey"
                             unfocus_color: "darkgrey"
                             focus_color: "grey"
@@ -696,80 +820,485 @@ MDScreen:
                             
                                 MDDropDownItem:
                                     id: fonction
-                                    size_hint_x: 1.
+                                    size_hint_x: 0.18
                                     pos_hint: {'center_x': .5, 'center_y': .5}
                                     text: 'Sélectionnez'
-                                    on_release:  app.menu.open()'
+                                    on_release:  app.menu.open()
                                 
 
                                 MDTextField:
-                                    id: telephone
+                                    id: researchnaissance
                                     width: "100dp"
                                     mode: "round"
-                                    size_hint_x: 1.5
+                                    size_hint_x: 0.5
                                     md_bg_color:(217/255,217/255,217/255,100)
                                     size_hint_y: None
                                     pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtablenaissance
+                            pos:10,30
+
 
                     #SCREEN ACTE DE MARIAGE
                     MDScreen:
                         name: "actemariage_maire"
 
-                        MDLabel:
-                            text: "MARIAGE"
-                            halign: "center"
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des actes de mariage"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchmariage
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtablemariage
+                            pos:10,30
 
                     #SCREEN ACTE DE DECES
                     MDScreen:
                         name: "actedeces_maire"
 
-                        MDLabel:
-                            text: "DECES"
-                            halign: "center"
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des actes de décès"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchdeces
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtabledeces
+                            pos:10,30
 
                     #SCREEN DE BANCS
                     MDScreen:
                         name: "bancs_maire"
+
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des bancs"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchbancs
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtablebancs
+                            pos:10,30
                         
+
                     #SCREEN DE DOCUMENTS
                     MDScreen:
                         name: "documents_maire"
 
-                        MDLabel:
-                            text: "documents"
-                            halign: "center"
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des documents"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchdocument
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtabledocument
+                            pos:10,30
                     
                     #SCREEN DE EMPLOYES
                     MDScreen:
                         name: "employés_maire"
 
-                        MDLabel:
-                            text: "employés"
-                            halign: "center"
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des employés"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchemploye
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtableemploye
+                            pos:10,30
 
                     #SCREEN DE PROJETS
                     MDScreen:
                         name: "projets_maire"
 
-                        MDLabel:
-                            text: "projets"
-                            halign: "center"
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des projets"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchprojet
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtableprojet
+                            pos:10,30
 
                     #SCREEN DE RDV
                     MDScreen:
                         name: "rdv_maire"
 
-                        MDLabel:
-                            text: "rdv"
-                            halign: "center"
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des rendez-vous"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchrdv
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtablerdv
+                            pos:10,30
 
                     #SCREEN DE PERSONNES
                     MDScreen:
                         name: "personnes_maire"
 
-                        MDLabel:
-                            text: "personnes"
-                            halign: "center"
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des personnes"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchpersonne
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtabledpersonne
+                            pos:10,30
                     
                     #SCREEN DE COMPTABILITE
                     MDScreen:
@@ -784,11 +1313,830 @@ MDScreen:
                     id: nav_drawer
                     radius: (0, 16, 16, 0)
                     md_bg_color:(87/255,84/255,212/255,100)
-                    ContentNavigationDrawer:
+                    ContentNavigationDrawerMaire:
                         orientation:'vertical'
                         screen_manager: screen_manager
                         nav_drawer: nav_drawer
         #LA FIN DU SCREEN MAIRE
+
+
+        #LE SCREEN SECRETAIRE PRINCIPAL COMMENCE ICI
+        MDScreen:
+            name:'sp'
+            BoxLayout:
+                orientation:'vertical'
+                
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y: 0.5
+                    height: self.minimum_height
+                    canvas:
+                        Color:
+                            rgba:(87/255,84/255,212/255,100)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    MDIconButton:
+                        icon: "menu"
+                        pos_hint: {"center_x": .0,"center_y": .5}
+                        halign:'left'
+                        size_hint_x: 0.2
+                        size_hint_y: 0
+                        theme_text_color: "Custom"
+                        text_color:'white'
+                        on_release:nav_drawersp.set_state("open")
+
+                    MDLabel:
+                        id:titress
+                        text:"BIENVENUE SUR LA PAGE DU SECRETAIRE PRINCIPAL  "
+                        size_hint_x: 2.2
+                        halign:'center'
+                        pos_hint: {"center": 1}
+                        theme_text_color:"Custom"
+                        text_color:'white'
+                        font_style:'H3'
+                        font_name:'font\AkayaKanadaka-Regular.ttf'
+                        bold: True
+                            
+                
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y: 5
+                    height: self.minimum_height
+                                
+
+            MDNavigationLayout:
+
+                MDScreenManager:
+                    id: screen_managersp
+                    #SCREEN ACCEUIL
+                    MDScreen:
+                        name: "acceuil_sp"
+                        RelativeLayout:
+                            MDCard:
+                                pos:15,550
+                                size_hint: .45, .2
+                                focus_behavior: False
+                                md_bg_color: "#FF6347"
+                                unfocus_color: "darkgrey"
+                                focus_color: "grey"
+                                elevation: 6
+                                MDLabel:
+                                    text: "bancs"
+                                    halign: "center"
+                                    text_color:"white"
+                            MDCard:
+                                pos:15,300
+                                size_hint: .45, .2
+                                focus_behavior: False
+                                md_bg_color: "#1C89B8"
+                                unfocus_color: "darkgrey"
+                                focus_color: "grey"
+                                elevation: 6
+                                MDLabel:
+                                    text: "bancs"
+                                    halign: "center"
+                                    text_color:"white"
+                            MDCard:
+                                pos:685,550
+                                size_hint: .45, .2
+                                focus_behavior: False
+                                md_bg_color: "#502E5C"
+                                unfocus_color: "darkgrey"
+                                focus_color: "grey"
+                                elevation: 6
+                                MDLabel:
+                                    text: "actes"
+                                    halign: "center"
+                                    text_color:"white"
+                            MDCard:
+                                pos:685,300
+                                size_hint: .45, .2
+                                focus_behavior: False
+                                md_bg_color: "#51C055"
+                                unfocus_color: "darkgrey"
+                                focus_color: "grey"
+                                elevation: 6
+                                MDLabel:
+                                    text: "bancs"
+                                    halign: "center"
+                                    text_color:"white"
+                            MDCard:
+                                pos:15,50
+                                size_hint: .45, .2
+                                focus_behavior: False
+                                md_bg_color: "#FF5F04"
+                                unfocus_color: "darkgrey"
+                                focus_color: "grey"
+                                elevation: 6
+                                MDLabel:
+                                    text: "actes"
+                                    halign: "center"
+                                    text_color:"white"
+                            MDCard:
+                                pos:685,50
+                                size_hint: .45, .2
+                                focus_behavior: False
+                                md_bg_color: "#D13434"
+                                unfocus_color: "darkgrey"
+                                focus_color: "grey"
+                                elevation: 6
+                                MDLabel:
+                                    text: "bancs"
+                                    halign: "center"
+                                    text_color:"white"
+
+                    #SCREEN ACTE DE NAISSANCE
+                    MDScreen:
+                        name: "actenaissance_sp"
+
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des actes de naissance"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchnaissancesp
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtablenaissancesp
+                            pos:10,30
+
+
+                    #SCREEN ACTE DE MARIAGE
+                    MDScreen:
+                        name: "actemariage_sp"
+
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des actes de mariage"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchmariagesp
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtablemariagesp
+                            pos:10,30
+
+                    #SCREEN ACTE DE DECES
+                    MDScreen:
+                        name: "actedeces_sp"
+
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des actes de décès"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchdecessp
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtabledecessp
+                            pos:10,30
+
+                    #SCREEN DE BANCS
+                    MDScreen:
+                        name: "bancs_sp"
+
+                        MDCard:
+                            pos:10,570
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "white"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            border: 10,10,10,10
+                            border_color:"#25A4F9FF"
+                            elevation: 20
+                            MDBoxLayout:
+                                orientation:'horizontal'
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MDTextField:
+                                        id:nom_marie
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Nom du marie"
+                                        theme_text_color:"Custom"
+                                        size_hint: .7, .3
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        padding_x:20
+                                        padding_y:10
+
+                                    BoxLayout:
+                                        orientation:'vertical'
+                                
+                                    MDTextField:
+                                        id:prenom_marie
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Prénom du marie"
+                                        theme_text_color:"Custom"
+                                        size_hint: .7, .3
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        padding_x:20
+                                        padding_y:10
+                                       
+                                        
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MDTextField:
+                                        id:nom_mariee
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Nom de la mariée"
+                                        theme_text_color:"Custom"
+                                        size_hint: .7, .3
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        padding_x:20
+                                        padding_y:10
+
+                                    BoxLayout:
+                                        orientation:'vertical'
+                                
+                                    MDTextField:
+                                        id:prenom_mariee
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Prénom de la mariée"
+                                        size_hint: .7, .3
+                                        theme_text_color:"Custom"
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        padding_x:20
+                                        padding_y:10
+
+
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MDTextField:
+                                        id:identifiant_banc
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Identifiant du banc "
+                                        size_hint: .7, .3
+                                        theme_text_color:"Custom"
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        padding_x:20
+                                        padding_y:10
+
+                                    BoxLayout:
+                                        orientation:'vertical'
+                                
+                                    MDTextField:
+                                        id:telephone_declarateur
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Téléphone du déclarateur"
+                                        size_hint: .7, .3
+                                        theme_text_color:"Custom"
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        padding_x:20
+                                        padding_y:10
+
+                        MDCard:
+                            pos:10,430
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "white"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDBoxLayout:
+                                orientation:'horizontal'
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MagicButton:
+                                        id: enregistrer_banc
+                                        text: "    Enregistrer    "
+                                        mode: "round"
+                                        size_hint: .7, .15
+                                        text_color: "black"
+                                        on_release: self.grow()
+                                        md_bg_color:(76/255,175/255,80/255,100)
+                                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                                    BoxLayout:
+                                        orientation:'vertical'
+                                
+                                    MDTextField:
+                                        id:prenom_marie
+                                        halign: "center"
+                                        hint_text:"Prénom du marie"
+                                        theme_text_color:"Custom"
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        padding_x:20
+                                        padding_y:10
+                                       
+                                        
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MagicButton:
+                                        id: modifier_banc
+                                        text: "    Modifier    "
+                                        mode: "round"
+                                        size_hint: .7, .15
+                                        text_color: "black"
+                                        on_release: self.grow()
+                                        md_bg_color:(87/255,84/255,212/255,100)
+                                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                                    BoxLayout:
+                                        orientation:'vertical'
+                                
+                                    MDTextField:
+                                        id:prenom_mariee
+                                        halign: "center"
+                                        hint_text:"Prénom de la mariée"
+                                        theme_text_color:"Custom"
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        padding_x:20
+                                        padding_y:10
+
+
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MagicButton:
+                                        id: supprimer_banc
+                                        text: "    Supprimer    "
+                                        mode: "round"
+                                        size_hint: .7, .15
+                                        text_color: "black"
+                                        on_release: self.grow()
+                                        md_bg_color:(76/255,175/255,212/255,100)
+                                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                                    BoxLayout:
+                                        orientation:'vertical'
+                                
+                                    MDTextField:
+                                        id:telephone_declarateur
+                                        halign: "center"
+                                        hint_text:"Téléphone du déclarateur"
+                                        theme_text_color:"Custom"
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        padding_x:20
+                                        padding_y:10
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtablebancssp
+                            pos:10,30
+                        
+
+                    #SCREEN DE DOCUMENTS
+                    MDScreen:
+                        name: "documents_sp"
+
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des documents"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchdocumentsp
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtabledocumentsp
+                            pos:10,30
+                    
+                    #SCREEN DE EMPLOYES
+                    MDScreen:
+                        name: "employés_sp"
+
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des employés"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchemployesp
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtableemployesp
+                            pos:10,30
+
+                    #SCREEN DE PROJETS
+                    MDScreen:
+                        name: "projets_sp"
+
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des projets"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchprojetsp
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtableprojetsp
+                            pos:10,30
+
+                    #SCREEN DE RDV
+                    MDScreen:
+                        name: "rdv_sp"
+
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des rendez-vous"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchrdvsp
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtablerdvsp
+                            pos:10,30
+
+                    #SCREEN DE PERSONNES
+                    MDScreen:
+                        name: "personnes_sp"
+
+                        MDCard:
+                            pos:10,550
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            MDLabel:
+                                text: "Liste des personnes"
+                                halign: "center"
+                                theme_text_color:"Custom"
+                                text_color:'white'
+                                font_style:'H3'
+                                font_name:'font\AkayaKanadaka-Regular.ttf'
+                                bold: True
+                                
+
+                        MDCard:
+                            pos:10,450
+                            size_hint: .98, .15
+                            focus_behavior: False
+                            md_bg_color: "darkgrey"
+                            unfocus_color: "darkgrey"
+                            focus_color: "grey"
+                            elevation: 6
+                            BoxLayout:
+                                orientation:'horizontal'
+                            
+                                MDDropDownItem:
+                                    id: fonction
+                                    size_hint_x: 0.18
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    text: 'Sélectionnez'
+                                    on_release:  app.menu.open()
+                                
+
+                                MDTextField:
+                                    id: researchpersonnesp
+                                    width: "100dp"
+                                    mode: "round"
+                                    size_hint_x: 0.5
+                                    md_bg_color:(217/255,217/255,217/255,100)
+                                    size_hint_y: None
+                                    pos_hint: {"center_x": 0, "center_y": .5}
+                                    padding_x:20
+                                BoxLayout:
+                                    orientation:'horizontal'
+                        MDBoxLayout:
+                            orientation:'horizontal'
+                            id:boxtabledpersonnesp
+                            pos:10,30
+                    
+                    #SCREEN DE COMPTABILITE
+                    MDScreen:
+                        name: "comptabilité_sp"
+
+                        MDLabel:
+                            text: "comptabilité"
+                            halign: "center"
+            
+
+                MDNavigationDrawer:
+                    id: nav_drawersp
+                    radius: (0, 16, 16, 0)
+                    md_bg_color:(87/255,84/255,212/255,100)
+                    ContentNavigationDrawerSP:
+                        orientation:'vertical'
+                        screen_managersp: screen_managersp
+                        nav_drawersp: nav_drawersp
+        #LA FIN DU SCREEN SECRETAIRE PRINCIPAL
 
     #LA FIN DU SCREENMANAGER manager1                   
 '''
