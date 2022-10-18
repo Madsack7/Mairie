@@ -1,14 +1,18 @@
 
+
+from cgitb import text
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.properties import ListProperty, ObjectProperty , StringProperty
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.label import MDLabel
+from kivymd.uix.button import MDFlatButton
 from kivy.core.window import Window,Config
 from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.menu import MDDropdownMenu
+from kivymd.uix.dialog import MDDialog
 from kivy.metrics import dp
+import pymysql
 from mairiekv import KV
 Window.font_name='font\AkayaKanadaka-Regular.ttk'
 Window.fullscreen='auto'
@@ -29,6 +33,95 @@ class ContentNavigationDrawerMaire(MDBoxLayout):
     screen_manager = ObjectProperty()
     nav_drawer = ObjectProperty()
     pass
+
+class base_de_donnees:
+    def __init__(self) -> None:
+        self.con=pymysql.connect(host="localhost",user="root",password="",database="mairie")
+        self.cur=self.con.cursor()
+        '''cur=conn.cursor()
+        cur.execute("select num_chambre,categorie from chambre;")
+        l=[]
+        output=cur.fetchall()
+        for i in output:
+        a=str(i[0])+" "+i[1]
+        l.append(a)
+        conn.close()
+        return l
+        try:
+        if prix=="":
+            messagebox.showwarning("Attention","Veuillez donner le prix ")
+        else:
+         conn=pymysql.connect(
+              host='localhost',
+              user='root',
+              password="",
+              db='hotel')
+         cur=conn.cursor()
+         cur.execute("insert into reservation_chambre (num_chambre,nom_client,prenom_client,telephone,date_reservation,prix) values (%s,%s,%s,%s,%s,%s);",(num_chambre,client_nom,client_prenom,client_telephone,date,prix))
+         conn.commit()
+         messagebox.showinfo("Success","Chambre reservé")
+         afficher()
+
+        except Exception as e:
+        messagebox.showerror("Echec",e)
+        conn.rollback()
+        conn.close()'''
+    #PERSONNE
+    def enregistrer_personne(self,nom,prenom,telephone):
+        try:
+            self.cur.execute("insert into personne(nom,prenom,telephone) values (%s,%s,%s)",(nom,prenom,telephone))
+            self.con.commit()
+            print("success")
+            self.con.close()
+            return 1
+        except Exception as e:
+            print(e)
+            self.con.rollback()
+            self.con.close()
+            return 0
+
+    def liste_personne(self):
+        try:
+            self.cur.execute("select nom,prenom,telephone from personne ")
+            output=self.cur.fetchall()
+            return output
+
+        except Exception as e:
+            print(e)
+
+    def modifier_personne(self,nom,prenom,telephone):
+       try:
+            self.cur.execute("update personne set nom=%s,prenom=%s where telephone=%s ",(nom,prenom,telephone))
+            self.con.commit()
+            print("success")
+            self.con.close()
+            return 1
+       except Exception as e:
+            print(e)
+            self.con.rollback()
+            self.con.close()
+            return 0
+    def supprimer_personne(self,telephone):
+       try:
+            self.cur.execute("delete from personne where telephone=%s ",(telephone))
+            self.con.commit()
+            print("success")
+            self.con.close()
+            return 1
+       except Exception as e:
+            print(e)
+            self.con.rollback()
+            self.con.close()
+            return 0
+    def rechercher_personne_telephone(self,telephone):
+        
+        self.cur.execute("select nom,prenom,telephone from personne where telephone LIKE '%"+telephone+"%'")
+        output=self.cur.fetchall()
+        return output
+
+        
+
+
 
 class Test(MDApp):
        def __init__(self, **kwargs):
@@ -219,7 +312,7 @@ class Test(MDApp):
                row_data=[]
             )
            self.screen.ids['boxtablerdv'].add_widget(self.data_tablerdv)
-
+       #personne
        def create_datatable_personne_Maire(self):
            self.data_tablepersonne=MDDataTable(
                size_hint=(0.01,0.5),
@@ -325,7 +418,7 @@ class Test(MDApp):
                    ("Date_mariage",dp(40)),
                    ("Téléphone",dp(40)),
                ],
-               background_color_header="grey",
+               background_color_header="#E2E7F6FF",
                row_data=[]
             )
            self.screen.ids['boxtablebancssp'].add_widget(self.data_tablebancsSP)
@@ -404,21 +497,135 @@ class Test(MDApp):
                row_data=[]
             )
            self.screen.ids['boxtablerdvsp'].add_widget(self.data_tablerdvSP)
+       
+
 
        def create_datatable_personne_SP(self):
            self.data_tablepersonneSP=MDDataTable(
                size_hint=(0.01,0.5),
                use_pagination=True,
                check=True,column_data=[
-                   ("Nom",dp(70)),
-                   ("Prénom",dp(70)),
-                   ("Téléphone",dp(70)),
+                   ("Nom",dp(75)),
+                   ("Prénom",dp(75)),
+                   ("Téléphone",dp(75)),
                      
                ],
-               background_color_header="grey",
+               background_color_header="#E2E7F6FF",
                row_data=[]
             )
+           self.data_tablepersonneSP.bind(on_check_press=self.on_check_press_personne)
            self.screen.ids['boxtabledpersonnesp'].add_widget(self.data_tablepersonneSP)
+
+       def on_check_press_personne(self,instance_table,current_row):
+           self.screen.ids['nom_personne'].text=current_row[0]
+           self.screen.ids['prenom_personne'].text=current_row[1]
+           self.screen.ids['telephone_personne'].text=current_row[2]
+       def remove_datatable_personne_SP(self):
+           self.screen.ids['boxtabledpersonnesp'].remove_widget(self.data_tablepersonneSP)
+
+       def vider_champs_personne(self):
+           self.screen.ids['nom_personne'].text=""
+           self.screen.ids['prenom_personne'].text=""
+           self.screen.ids['telephone_personne'].text=""
+       #Personne
+       def enregistrer_personne(self):
+           nom=self.screen.ids['nom_personne'].text
+           prenom=self.screen.ids['prenom_personne'].text
+           telephone=self.screen.ids['telephone_personne'].text
+           if nom=="" and prenom=="" and telephone=="":
+               print("Veuiller remplir les champs")
+           else:
+               a=base_de_donnees().enregistrer_personne(nom=nom,prenom=prenom,telephone=telephone)
+               if a==1:
+                    self.dialog=MDDialog(
+                        title="success",
+                        type="confirmation",
+                        text="La personne est enregistré",
+                        background_color="green",
+                        )
+                    self.dialog.open()
+                    self.remove_datatable_personne_SP()
+                    self.affiche_liste_personne()
+                    self.vider_champs_personne() 
+               else:
+                    self.dialog=MDDialog(
+                        title="Erreur",
+                        type="confirmation",
+                        text="Attention ce numero de téléphone existe",
+                        background_color="red",
+                        )
+                    self.dialog.open()
+                    self.vider_champs_personne()
+
+       def affiche_liste_personne(self):
+           self.remove_datatable_personne_SP()
+           self.create_datatable_personne_SP()
+           self.data_tablepersonneSP.row_data=base_de_donnees().liste_personne()
+
+       def modifier_personne(self):
+           nom=self.screen.ids['nom_personne'].text
+           prenom=self.screen.ids['prenom_personne'].text
+           telephone=self.screen.ids['telephone_personne'].text
+           id=self.data_tablepersonneSP.get_row_checks()[0][2]
+           a=base_de_donnees().modifier_personne(nom=nom,prenom=prenom,telephone=telephone)
+           if a==1:
+               self.dialog=MDDialog(
+                    title="success",
+                    type="confirmation",
+                    text="Les informations sont modifié",
+                    background_color="green",
+                    )
+               self.dialog.open()
+               self.remove_datatable_personne_SP()
+               self.affiche_liste_personne()
+               self.vider_champs_personne() 
+           else:
+               self.dialog=MDDialog(
+                    title="Erreur",
+                    type="confirmation",
+                    text="Attention ce numero de téléphone existe",
+                    background_color="red",
+                    )
+               self.dialog.open()
+               self.vider_champs_personne()
+            
+       def supprimer_personne(self):
+           nom=self.screen.ids['nom_personne'].text
+           prenom=self.screen.ids['prenom_personne'].text
+           telephone=self.screen.ids['telephone_personne'].text
+           id=self.data_tablepersonneSP.get_row_checks()[0][2]
+           a=base_de_donnees().supprimer_personne(telephone=telephone)
+           if a==1:
+               self.dialog=MDDialog(
+                    title="success",
+                    type="confirmation",
+                    text="Les informations sont supprimés",
+                    background_color="green",
+                    )
+               self.dialog.open()
+               self.remove_datatable_personne_SP()
+               self.affiche_liste_personne()
+               self.vider_champs_personne() 
+           else:
+               self.dialog=MDDialog(
+                    title="Erreur",
+                    type="confirmation",
+                    text="Attention ce numero de téléphone n'existe pas",
+                    background_color="red",
+                    )
+               self.dialog.open()
+               self.vider_champs_personne()
+
+       def rechercher_personne(self):
+           #self.remove_datatable_personne_SP()
+           #self.create_datatable_personne_SP()
+           telephone=self.screen.ids['recherche_personnesp'].text
+           self.data_tablepersonneSP.row_data=base_de_donnees().rechercher_personne_telephone(telephone=telephone)
+
+           
+
+       
+
 
        #Connexion et inscription fonction debut
        def decon(self):
@@ -462,6 +669,8 @@ class Test(MDApp):
             self.create_datatable_projet_SP()
             self.create_datatable_rdv_SP()
             self.create_datatable_personne_SP()
+            self.affiche_liste_personne()
+            base_de_donnees()
             return self.screen
 
 

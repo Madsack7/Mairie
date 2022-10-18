@@ -245,7 +245,7 @@ KV = '''
             text: "Deconnectez-vous"
             item_color:'red'
             on_press:
-                root.nav_drawer.set_state("close")
+                root.nav_drawersp.set_state("close")
                 app.decon()
 
 
@@ -1627,12 +1627,12 @@ MDScreen:
                             pos:10,570
                             size_hint: .98, .15
                             focus_behavior: False
-                            md_bg_color: "white"
+                            md_bg_color: "#E2E7F6FF"
                             unfocus_color: "darkgrey"
                             focus_color: "grey"
                             border: 10,10,10,10
-                            border_color:"#25A4F9FF"
-                            elevation: 20
+                            elevation: 200
+                            elevation_color:"#25A4F9FF"
                             MDBoxLayout:
                                 orientation:'horizontal'
                                 BoxLayout:
@@ -1643,11 +1643,11 @@ MDScreen:
                                         pos_hint: {"center_x": 0.5, "center_y": .5}
                                         hint_text:"Nom du marie"
                                         theme_text_color:"Custom"
-                                        size_hint: .7, .3
+                                        size_hint: .7, 1
                                         text_color:'black'
                                         mode: "round"
                                         bold: True
-                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        md_bg_color:"white"
                                         padding_x:20
                                         padding_y:10
 
@@ -1659,11 +1659,11 @@ MDScreen:
                                         pos_hint: {"center_x": 0.5, "center_y": .5}
                                         hint_text:"Prénom du marie"
                                         theme_text_color:"Custom"
-                                        size_hint: .7, .3
+                                        size_hint: .7, 1
                                         text_color:'black'
                                         mode: "round"
                                         bold: True
-                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        md_bg_color:"white"
                                         padding_x:20
                                         padding_y:10
                                        
@@ -1676,11 +1676,11 @@ MDScreen:
                                         pos_hint: {"center_x": 0.5, "center_y": .5}
                                         hint_text:"Nom de la mariée"
                                         theme_text_color:"Custom"
-                                        size_hint: .7, .3
+                                        size_hint: .7, 1
                                         text_color:'black'
                                         mode: "round"
                                         bold: True
-                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        md_bg_color:"white"
                                         padding_x:20
                                         padding_y:10
 
@@ -1691,12 +1691,12 @@ MDScreen:
                                         id:prenom_mariee
                                         pos_hint: {"center_x": 0.5, "center_y": .5}
                                         hint_text:"Prénom de la mariée"
-                                        size_hint: .7, .3
+                                        size_hint: .7, 1
                                         theme_text_color:"Custom"
                                         text_color:'black'
                                         mode: "round"
                                         bold: True
-                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        md_bg_color:"white"
                                         padding_x:20
                                         padding_y:10
 
@@ -1708,12 +1708,12 @@ MDScreen:
                                         id:identifiant_banc
                                         pos_hint: {"center_x": 0.5, "center_y": .5}
                                         hint_text:"Identifiant du banc "
-                                        size_hint: .7, .3
+                                        size_hint: .7, 1
                                         theme_text_color:"Custom"
                                         text_color:'black'
                                         mode: "round"
                                         bold: True
-                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        md_bg_color:"white"
                                         padding_x:20
                                         padding_y:10
 
@@ -1724,12 +1724,12 @@ MDScreen:
                                         id:telephone_declarateur
                                         pos_hint: {"center_x": 0.5, "center_y": .5}
                                         hint_text:"Téléphone du déclarateur"
-                                        size_hint: .7, .3
+                                        size_hint: .7, 1
                                         theme_text_color:"Custom"
                                         text_color:'black'
                                         mode: "round"
                                         bold: True
-                                        md_bg_color:(217/255,217/255,217/255,100)
+                                        md_bg_color:"white"
                                         padding_x:20
                                         padding_y:10
 
@@ -2067,53 +2067,165 @@ MDScreen:
                         name: "personnes_sp"
 
                         MDCard:
-                            pos:10,550
-                            size_hint: .98, .15
+                            pos:10,570
+                            size_hint: .98, .12
                             focus_behavior: False
-                            md_bg_color: "darkgrey"
+                            md_bg_color: "#E2E7F6FF"
                             unfocus_color: "darkgrey"
                             focus_color: "grey"
-                            elevation: 6
-                            MDLabel:
-                                text: "Liste des personnes"
-                                halign: "center"
-                                theme_text_color:"Custom"
-                                text_color:'white'
-                                font_style:'H3'
-                                font_name:'font\AkayaKanadaka-Regular.ttf'
-                                bold: True
-                                
+                            border: 10,10,10,10
+                            elevation: 200
+                            elevation_color:"#25A4F9FF"
+                            MDBoxLayout:
+                                orientation:'horizontal'
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MDTextField:
+                                        id:nom_personne
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Nom de la personne"
+                                        theme_text_color:"Custom"
+                                        size_hint: .7, 0.8
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:"white"
+                                        padding_x:20
+                                        padding_y:10
+
+                                    MDBoxLayout:
+                                        orientation:'horizontal'    
+                                       
+                                        
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MDTextField:
+                                        id:prenom_personne
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Prénom de la personne"
+                                        theme_text_color:"Custom"
+                                        size_hint: .7, 0.8
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        md_bg_color:"white"
+                                        padding_x:20
+                                        padding_y:10
+
+                                    MDBoxLayout:
+                                        orientation:'horizontal'
+
+
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MDTextField:
+                                        id:telephone_personne
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Numéro de téléphone"
+                                        required: True
+                                        max_text_length: 8
+                                        theme_text_color:"Custom"
+                                        size_hint: .7, 0.8
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        background_color:"white"
+                                        padding_x:20
+                                        padding_y:10
+
+                                    MDBoxLayout:
+                                        orientation:'horizontal'
+
 
                         MDCard:
-                            pos:10,450
+                            pos:10,430
                             size_hint: .98, .15
                             focus_behavior: False
-                            md_bg_color: "darkgrey"
+                            md_bg_color: "white"
                             unfocus_color: "darkgrey"
                             focus_color: "grey"
                             elevation: 6
-                            BoxLayout:
+                            MDBoxLayout:
                                 orientation:'horizontal'
-                            
-                                MDDropDownItem:
-                                    id: fonction
-                                    size_hint_x: 0.18
-                                    pos_hint: {'center_x': .5, 'center_y': .5}
-                                    text: 'Sélectionnez'
-                                    on_release:  app.menu.open()
-                                
-
-                                MDTextField:
-                                    id: researchpersonnesp
-                                    width: "100dp"
-                                    mode: "round"
-                                    size_hint_x: 0.5
-                                    md_bg_color:(217/255,217/255,217/255,100)
-                                    size_hint_y: None
-                                    pos_hint: {"center_x": 0, "center_y": .5}
-                                    padding_x:20
                                 BoxLayout:
-                                    orientation:'horizontal'
+                                    orientation:'vertical'
+                                    padding:10
+                                    MagicButton:
+                                        id: enregistrer_personne
+                                        text: "    Enregistrer    "
+                                        mode: "round"
+                                        size_hint: .7, .15
+                                        text_color: "black"
+                                        on_release: 
+                                            self.grow()
+                                            app.enregistrer_personne()
+                                        md_bg_color:(76/255,175/255,80/255,100)
+                                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                                    BoxLayout:
+                                        orientation:'vertical'
+
+                                    MDTextField:
+                                        id:recherche_personnesp
+                                        pos_hint: {"center_x": 0.5, "center_y": .5}
+                                        hint_text:"Rechercher ici"
+                                        icon_left:"magnify"
+                                        theme_text_color:"Custom"
+                                        size_hint: .7, 1.1
+                                        text_color:'black'
+                                        mode: "round"
+                                        bold: True
+                                        background_color:"white"
+                                        padding_x:20
+                                        padding_y:10
+                                        on_text:
+                                            app.rechercher_personne()
+                                    
+                                
+                                   
+                                        
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MagicButton:
+                                        id: modifier_personne
+                                        text: "    Modifier    "
+                                        mode: "round"
+                                        size_hint: .7, .15
+                                        text_color: "black"
+                                        on_release: 
+                                            self.grow()
+                                            app.modifier_personne()
+                                        md_bg_color:(87/255,84/255,212/255,100)
+                                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                                    BoxLayout:
+                                        orientation:'vertical'
+                                
+                                    
+
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    padding:10
+                                    MagicButton:
+                                        id: supprimer_personne
+                                        text: "    Supprimer    "
+                                        mode: "round"
+                                        size_hint: .7, .15
+                                        text_color: "black"
+                                        on_release: 
+                                            self.grow()
+                                            app.supprimer_personne()
+                                        md_bg_color:(213/255,0/255,0/255,50)
+                                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                                    BoxLayout:
+                                        orientation:'vertical'
+                                
+                                    
                         MDBoxLayout:
                             orientation:'horizontal'
                             id:boxtabledpersonnesp
